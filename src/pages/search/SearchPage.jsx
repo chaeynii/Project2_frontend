@@ -1,10 +1,10 @@
 import React from "react";
-import SearchBar from "./SearchBar";
+import SearchHeader from "./SearchHeader";
 
 const SearchPage = () => {
   return (
     <>
-      <SearchBar />
+      <SearchHeader />
     </>
   );
 };
