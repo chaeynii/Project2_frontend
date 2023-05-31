@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import SearchBar from "../../components/SearchBar";
-import IconDown from "../../assets/icon_down.svg";
+import IconDown from "../../assets/iconDown.svg";
 
 const SearchHeader = () => {
   const [total, setTotal] = useState(14);

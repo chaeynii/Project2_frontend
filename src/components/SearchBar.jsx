@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import IconSearch from "../assets/icon_search.svg";
-import IconUp from "../assets/icon_up.svg";
-import IconDown from "../assets/icon_down.svg";
-import IconAlarm from "../assets/icon_alarm.svg";
-import location_data from "../assets/address_list.json";
+import IconSearch from "../assets/iconSearch.svg";
+import IconUp from "../assets/iconUp.svg";
+import IconDown from "../assets/iconDown.svg";
+import IconAlarm from "../assets/iconAlarm.svg";
+import locationData from "../assets/addressList.json";
 
 const SearchBar = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -19,10 +19,10 @@ const SearchBar = () => {
     setSelectedLocationSecond(locationSecond);
   };
   const [locationFirst, setLocationFirst] = useState(
-    location_data[0]["시/도"][1]
+    locationData[0]["시/도"][1]
   );
   const [locationSecond, setLocationSecond] = useState(
-    location_data[0]["시/군/구"][0]
+    locationData[0]["시/군/구"][0]
   );
   const [selectedLocationFirst, setSelectedLocationFirst] =
     useState(locationFirst);
@@ -34,7 +34,7 @@ const SearchBar = () => {
     setLocationFirst(event.target.value);
   };
 
-  const locationFirstOptions = location_data.map((location) => (
+  const locationFirstOptions = locationData.map((location) => (
     <DropdownMenuItem
       key={location["시/도"][0]}
       value={location["시/도"][1]}
@@ -51,7 +51,7 @@ const SearchBar = () => {
     setLocationSecond(selectedCity);
   };
 
-  const locationSecondOptions = location_data.map((location) => {
+  const locationSecondOptions = locationData.map((location) => {
     if (location["시/도"][1] === locationFirst) {
       return location["시/군/구"].map((city) => (
         <DropdownMenuItem
@@ -69,15 +69,6 @@ const SearchBar = () => {
   });
 
   const [search, setSearch] = useState("");
-  const [total, setTotal] = useState(14);
-
-  const filterItem = [
-    { name: "인기순", state: "byPopular" },
-    { name: "이름순", state: "byName" },
-  ];
-  const [filter, setFilter] = useState(filterItem[0]);
-  const [toggle, setToggle] = useState(false);
-
   const onChange = (e) => {
     setSearch(e.target.value);
   };

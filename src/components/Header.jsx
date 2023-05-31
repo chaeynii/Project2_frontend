@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import IconLeft from "../assets/icon_left.svg";
+import IconLeft from "../assets/iconLeft.svg";
 
 const Header = () => {
   return (
@@ -16,9 +16,9 @@ const Header = () => {
 export default Header;
 
 const HeaderWrap = styled.div`
-  width: 100%;
+  width: 833px;
   border-bottom: 1px solid;
-  margin: 0 121.818px;
+  // margin: 0 121.818px;
   display: flex;
 
   & > h2 {
