@@ -1,11 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { favoriteState } from "../../recoil/RecoilAtoms";
 import IconClock from "../../assets/iconClock.svg";
 import IconLocationGray from "../../assets/iconLocationGray.svg";
 import IconStarEmpty from "../../assets/iconStarEmpty.svg";
 import IconStarFilled from "../../assets/iconStarFilled.svg";
 
 const HospitalCard = ({
+  hpid,
   hospitalName,
   hospitalAddress,
   today,
@@ -14,7 +17,9 @@ const HospitalCard = ({
   favorite,
 }) => {
   const week = ["월", "화", "수", "목", "금", "토", "일", "공휴일"];
-  const todayText = week[today];
+  const todayText = week[today - 1];
+  // const favorite = useRecoilValue(favoriteState);
+  // console.log("hpid:", hpid);
 
   return (
     <>
@@ -23,7 +28,7 @@ const HospitalCard = ({
         <div>
           <img alt={"icon-clock"} src={IconClock} />
           <span>
-            {todayText + "요일 " + dutyTimeStart + "~" + dutyTimeClose}
+            {todayText + "요일 " + dutyTimeStart + " ~ " + dutyTimeClose}
           </span>
         </div>
         <div>
@@ -51,6 +56,7 @@ const CardBox = styled.button`
   border-radius: 20px;
   box-sizing: border-box;
   padding: 2%;
+  margin: 1% 0;
 
   & > div {
     display: flex;

@@ -3,8 +3,8 @@ import styled from "styled-components";
 import SearchBar from "../../components/SearchBar";
 import IconDown from "../../assets/iconDown.svg";
 
-const SearchHeader = () => {
-  const [total, setTotal] = useState(14);
+const SearchHeader = ({ total }) => {
+  const [totalShow, setTotalShow] = useState(total);
 
   const filterItem = [
     { name: "인기순", state: "byPopular" },
@@ -34,7 +34,7 @@ const SearchHeader = () => {
     <Wrapper>
       <SearchBar />
       <div>
-        <Total>총 {total} 개</Total>
+        <Total>총 {totalShow} 개</Total>
         <div>
           <DropdownContainer>
             <DropdownButton isOpen={isOpen} onClick={handleSelectClick}>

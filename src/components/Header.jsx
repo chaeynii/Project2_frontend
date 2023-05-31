@@ -2,13 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import IconLeft from "../assets/iconLeft.svg";
 
-const Header = () => {
+const Header = ({ headerTitle }) => {
   return (
     <HeaderWrap>
       <BtnBack>
         <img alt="icon-left" src={IconLeft}></img>
       </BtnBack>
-      <h2>병원 찾기</h2>
+      <h2>{headerTitle}</h2>
     </HeaderWrap>
   );
 };
@@ -16,10 +16,11 @@ const Header = () => {
 export default Header;
 
 const HeaderWrap = styled.div`
-  width: 833px;
-  border-bottom: 1px solid;
-  // margin: 0 121.818px;
+  width: 100%;
+  border-bottom: 1px solid #b2b2b2;
   display: flex;
+  text-align: center;
+  justify-content: center;
 
   & > h2 {
     font-size: 20px;
