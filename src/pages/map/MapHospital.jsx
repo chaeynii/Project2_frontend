@@ -4,15 +4,17 @@ import Header from "../../components/Header";
 import styled from "styled-components";
 // import CardBox from "../../components/CardBox";
 import IconDown from "../../assets/iconDown.svg";
+import { NavigationBar } from "../../components/NavigationBar";
+import API_KEYS from "./apikeys.js";
 
 const MapHospital = () => {
   useEffect(() => {
-    const API_KEY = "c8a19b4d01a129ab46619cbd29e96ea6"; // 여기에 발급받은 API 키를 입력하세요.
+    const kakaoMapsApiKey = API_KEYS.kakaoMaps;
 
     // API 로드를 위한 스크립트 추가
     const script = document.createElement("script");
     script.async = true;
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${API_KEY}&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoMapsApiKey}&autoload=false`;
     document.head.appendChild(script);
 
     script.onload = () => {
@@ -40,6 +42,7 @@ const MapHospital = () => {
           </div>
         </CardContent>
       </CardBox>
+      <NavigationBar />
     </Wrapper>
   );
 };
