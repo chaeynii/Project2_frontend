@@ -14,7 +14,6 @@ function App() {
     <Container>
       <Router>
         <QueryClientProvider client={queryClient}>
-          {/* <SearchPage /> */}
           <MapHospital />
         </QueryClientProvider>
       </Router>

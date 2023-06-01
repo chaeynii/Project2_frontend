@@ -58,6 +58,8 @@ const Nav = styled.div`
   border-top: 1px solid #b2b2b2;
   background-color: antiquewhite;
   margin: auto;
+  position: relative;
+  z-index: 99;
 `;
 
 const NavUl = styled.ul`
