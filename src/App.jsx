@@ -2,6 +2,7 @@ import "./App.css";
 import styled from "styled-components";
 import { RecoilRoot } from "recoil";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import SearchPage from "./pages/search/SearchPage";
 import MapHospital from "./pages/map/MapHospital";
@@ -10,16 +11,14 @@ const queryClient = new QueryClient();
 
 function App() {
   return (
-    <RecoilRoot>
-      <Container>
+    <Container>
+      <Router>
         <QueryClientProvider client={queryClient}>
-          <div className="App">
-            {/* <SearchPage /> */}
-            <MapHospital />
-          </div>
+          {/* <SearchPage /> */}
+          <MapHospital />
         </QueryClientProvider>
-      </Container>
-    </RecoilRoot>
+      </Router>
+    </Container>
   );
 }
 
