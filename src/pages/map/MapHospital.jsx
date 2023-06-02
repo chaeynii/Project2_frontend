@@ -95,47 +95,53 @@ const MapHospital = () => {
   return (
     <Wrapper>
       <Header headerTitle={dutyName} />
-      <div
-        id="map"
-        style={{
-          width: "100%",
-          height: "100vh",
-          position: "relative",
-          zIndex: 1,
-        }}
-      />
-      <CardBoxWrap isOpen={isOpen}>
-        <CardBox linkTo={"#"}>
-          <div>
-            <CardBoxHeader>
-              <BtnHidden onClick={handleToggle}>
-                <img alt={"icon-down"} src={isOpen ? IconDown : IconUp}></img>
-              </BtnHidden>
-              <div>{dutyName}</div>
-            </CardBoxHeader>
-            <CardBoxContent>
-              <div>
-                <img alt={"icon-clock"} src={IconClock} />
-                <span>
-                  {todayText + "요일 " + dutyTimeStart + " ~ " + dutyTimeClose}
-                </span>
-              </div>
-              <div>
-                <img alt={"icon-location"} src={IconLocationGray} />
-                <span>{hospitalAddress}</span>
-              </div>
-              <div>
-                <img alt={"icon-telephone"} src={IconTelephone} />
-                <span>{dutyTel}</span>
-              </div>
-            </CardBoxContent>
-          </div>
-        </CardBox>
-      </CardBoxWrap>
-      <ButtonStyle>
-        <img alt={"icon-here"} src={IconHereWhite}></img>
-        <span>현위치</span>
-      </ButtonStyle>
+      <MapContainer>
+        <div
+          id="map"
+          style={{
+            width: "100%",
+            height: "100vh",
+            position: "relative",
+            zIndex: "2",
+          }}
+        />
+        <CardBoxWrap isOpen={isOpen}>
+          <CardBox linkTo={"#"}>
+            <div>
+              <CardBoxHeader>
+                <BtnHidden onClick={handleToggle}>
+                  <img alt={"icon-down"} src={isOpen ? IconDown : IconUp}></img>
+                </BtnHidden>
+                <div>{dutyName}</div>
+              </CardBoxHeader>
+              <CardBoxContent>
+                <div>
+                  <img alt={"icon-clock"} src={IconClock} />
+                  <span>
+                    {todayText +
+                      "요일 " +
+                      dutyTimeStart +
+                      " ~ " +
+                      dutyTimeClose}
+                  </span>
+                </div>
+                <div>
+                  <img alt={"icon-location"} src={IconLocationGray} />
+                  <span>{hospitalAddress}</span>
+                </div>
+                <div>
+                  <img alt={"icon-telephone"} src={IconTelephone} />
+                  <span>{dutyTel}</span>
+                </div>
+              </CardBoxContent>
+            </div>
+          </CardBox>
+        </CardBoxWrap>
+        <ButtonStyle>
+          <img alt={"icon-here"} src={IconHereWhite}></img>
+          <span>현위치</span>
+        </ButtonStyle>
+      </MapContainer>
       <NavigationBar />
     </Wrapper>
   );
@@ -144,19 +150,42 @@ const MapHospital = () => {
 export default MapHospital;
 
 const Wrapper = styled.div`
-  display: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 `;
 
+const MapContainer = styled.div`
+  flex: 1;
+  position: relative;
+`;
+
+// const CardBoxWrap = styled.div`
+//   position: relative;
+//   box-sizing: border-box;
+//   z-index: 3;
+//   top: ${({ isOpen }) => (isOpen ? "90%" : "115%")};
+//   left: 50%;
+//   min-width: 40%;
+//   max-width: 70%;
+//   transform: translate(-50%, -50%);
+//   transition: top 0.3s;
+//   overflow: hidden;
+// `;
+
+// const CardBoxWrap = styled.div`
+//   float: left;
+//   width: 50%;
+// `;
+
 const CardBoxWrap = styled.div`
+  display: block;
   position: absolute;
-  top: ${({ isOpen }) => (isOpen ? "90%" : "115%")};
+  top: ${({ isOpen }) => (isOpen ? "80%" : "110%")};
   left: 50%;
-  min-width: 40%;
-  max-width: 70%;
-  box-sizing: border-box;
-  z-index: 2;
+  width: 70%;
+  z-index: 3;
   transform: translate(-50%, -50%);
-  transition: top 0.3s;
 `;
 
 const CardBoxHeader = styled.div`
@@ -191,10 +220,13 @@ const BtnHidden = styled.button`
 `;
 
 const ButtonStyle = styled.button`
+  display: block;
   position: absolute;
-  display: flex;
+  width: 20%;
+  z-index: 3;
+  transform: translate(-50%, -50%);
   bottom: 0%;
-  left: 50%;
+  left: 60%;
   z-index: 3;
   font-size: 20px;
 
