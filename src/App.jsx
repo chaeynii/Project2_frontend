@@ -7,6 +7,7 @@ import Header from "./components/Header.jsx";
 import SearchPage from "./pages/search/SearchPage";
 import SearchPageTest from "./pages/search/SearchPageTest";
 import MapHospital from "./pages/map/MapHospital";
+import MapMyPage from "./pages/map/MapMyPage";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +17,8 @@ function App() {
       <Router>
         <QueryClientProvider client={queryClient}>
           {/* <SearchPageTest /> */}
-          <MapHospital />
+          {/* <MapHospital /> */}
+          <MapMyPage />
         </QueryClientProvider>
       </Router>
     </Container>

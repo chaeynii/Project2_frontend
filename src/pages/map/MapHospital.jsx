@@ -9,7 +9,8 @@ import IconClock from "../../assets/iconClockMap.svg";
 import IconLocationGray from "../../assets/iconLocationMap.svg";
 import IconLocationGreen from "../../assets/iconLocationGreen.svg";
 import IconTelephone from "../../assets/iconTelMap.svg";
-import iconHereWhite from "../../assets/iconHereWhite.svg";
+import IconHereWhite from "../../assets/iconHereWhite.svg";
+import IconHereGreen from "../../assets/iconHereGreen.svg";
 import { NavigationBar } from "../../components/NavigationBar";
 // import { NavigationBar } from "../../components/navigationBar";
 import API_KEYS from "./apikeys.js";
@@ -38,28 +39,47 @@ const MapHospital = () => {
           center: new window.kakao.maps.LatLng(37.5665, 126.978),
           level: 3,
         };
-        var map = new window.kakao.maps.Map(container, options);
+        const map = new window.kakao.maps.Map(container, options);
 
         // 현재 위치 받아오기
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function (position) {
-            var lat = position.coords.latitude; // 현재 위치의 위도
-            var lng = position.coords.longitude; // 현재 위치의 경도
+            const lat = position.coords.latitude; // 현재 위치의 위도
+            const lng = position.coords.longitude; // 현재 위치의 경도
 
-            var markerPosition = new window.kakao.maps.LatLng(lat, lng); // 현재 위치 좌표
+            const myLocationMarkerPosition = new window.kakao.maps.LatLng(
+              lat,
+              lng
+            ); // 현재 위치 좌표
 
-            var marker = new window.kakao.maps.Marker({
-              position: markerPosition,
+            const myLocationMarker = new window.kakao.maps.Marker({
+              position: myLocationMarkerPosition,
+              map: map,
+              image: new window.kakao.maps.MarkerImage(
+                IconHereGreen,
+                new window.kakao.maps.Size(70, 70)
+              ),
+            });
+
+            // 병원 위치 설정
+            const hospitalMarkerPosition = new window.kakao.maps.LatLng(
+              37.123,
+              127.456
+            ); // 병원 위치 좌표
+
+            const hospitalMarker = new window.kakao.maps.Marker({
+              position: hospitalMarkerPosition,
+              map: map,
               image: new window.kakao.maps.MarkerImage(
                 IconLocationGreen,
                 new window.kakao.maps.Size(70, 70)
               ),
             });
 
-            marker.setMap(map);
-
-            // 현재 위치를 지도 중심으로 설정
-            map.setCenter(markerPosition);
+            const bounds = new window.kakao.maps.LatLngBounds();
+            bounds.extend(myLocationMarkerPosition);
+            bounds.extend(hospitalMarkerPosition);
+            map.setBounds(bounds);
           });
         }
       });
@@ -113,7 +133,7 @@ const MapHospital = () => {
         </CardBox>
       </CardBoxWrap>
       <ButtonStyle>
-        <img alt={"icon-here"} src={iconHereWhite}></img>
+        <img alt={"icon-here"} src={IconHereWhite}></img>
         <span>현위치</span>
       </ButtonStyle>
       <NavigationBar />
