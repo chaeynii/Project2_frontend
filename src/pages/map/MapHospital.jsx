@@ -7,6 +7,7 @@ import IconDown from "../../assets/iconDown.svg";
 import IconUp from "../../assets/iconUp.svg";
 import IconClock from "../../assets/iconClockMap.svg";
 import IconLocationGray from "../../assets/iconLocationMap.svg";
+import IconLocationGreen from "../../assets/iconLocationGreen.svg";
 import IconTelephone from "../../assets/iconTelMap.svg";
 import iconHereWhite from "../../assets/iconHereWhite.svg";
 import { NavigationBar } from "../../components/NavigationBar";
@@ -37,7 +38,24 @@ const MapHospital = () => {
           center: new window.kakao.maps.LatLng(37.5665, 126.978),
           level: 3,
         };
-        const map = new window.kakao.maps.Map(container, options);
+        var map = new window.kakao.maps.Map(container, options);
+
+        var markerPosition = new window.kakao.maps.LatLng(37.5665, 126.978); // 핀을 꽂을 위치 좌표
+
+        var marker = new window.kakao.maps.Marker({
+          position: markerPosition,
+          image: new window.kakao.maps.MarkerImage(
+            IconLocationGreen,
+            new window.kakao.maps.Size(70, 70) // 이미지 크기
+            // {
+            //   offset: new window.kakao.maps.Point(15, 30), // 이미지 좌표에 대한 오프셋 값
+            //   spriteSize: new window.kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
+            //   spriteOrigin: new window.kakao.maps.Point(0, 0), // 스프라이트 이미지 중 사용할 영역의 시작 좌표
+            // }
+          ),
+        });
+
+        marker.setMap(map);
       });
     };
   }, []);

@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "./components/Header.jsx";
 import SearchPage from "./pages/search/SearchPage";
+import SearchPageTest from "./pages/search/SearchPageTest";
 import MapHospital from "./pages/map/MapHospital";
 
 const queryClient = new QueryClient();
@@ -14,6 +15,7 @@ function App() {
     <Container>
       <Router>
         <QueryClientProvider client={queryClient}>
+          {/* <SearchPageTest /> */}
           <MapHospital />
         </QueryClientProvider>
       </Router>
