@@ -40,22 +40,28 @@ const MapHospital = () => {
         };
         var map = new window.kakao.maps.Map(container, options);
 
-        var markerPosition = new window.kakao.maps.LatLng(37.5665, 126.978); // 핀을 꽂을 위치 좌표
+        // 현재 위치 받아오기
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (position) {
+            var lat = position.coords.latitude; // 현재 위치의 위도
+            var lng = position.coords.longitude; // 현재 위치의 경도
 
-        var marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-          image: new window.kakao.maps.MarkerImage(
-            IconLocationGreen,
-            new window.kakao.maps.Size(70, 70) // 이미지 크기
-            // {
-            //   offset: new window.kakao.maps.Point(15, 30), // 이미지 좌표에 대한 오프셋 값
-            //   spriteSize: new window.kakao.maps.Size(36, 691), // 스프라이트 이미지의 크기
-            //   spriteOrigin: new window.kakao.maps.Point(0, 0), // 스프라이트 이미지 중 사용할 영역의 시작 좌표
-            // }
-          ),
-        });
+            var markerPosition = new window.kakao.maps.LatLng(lat, lng); // 현재 위치 좌표
 
-        marker.setMap(map);
+            var marker = new window.kakao.maps.Marker({
+              position: markerPosition,
+              image: new window.kakao.maps.MarkerImage(
+                IconLocationGreen,
+                new window.kakao.maps.Size(70, 70)
+              ),
+            });
+
+            marker.setMap(map);
+
+            // 현재 위치를 지도 중심으로 설정
+            map.setCenter(markerPosition);
+          });
+        }
       });
     };
   }, []);
